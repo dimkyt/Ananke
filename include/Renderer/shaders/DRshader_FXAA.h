@@ -1,6 +1,8 @@
 #ifndef _DR_SHADER_FXAA_
 #define _DR_SHADER_FXAA_
 
+
+// System includes
 #include <GL/glew.h>
 
 class DRshader_FXAA
