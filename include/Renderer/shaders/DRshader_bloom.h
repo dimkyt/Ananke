@@ -1,8 +1,6 @@
 #ifndef _DR_SHADER_BLOOM_
 #define _DR_SHADER_BLOOM_
 
-
-// System includes
 #include <GL/glew.h>
 
 class DRshader_bloom
