@@ -1,0 +1,214 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 22.05.2012 00:04:57
+
+newmtl floor
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.8745 0.8745 0.8745
+	Kd 0.8745 0.8745 0.8745
+	Ks 0.2880 0.2880 0.2880
+	Ke 0.0000 0.0000 0.0000
+	map_Ka tiles1.jpg
+	map_Kd tiles1.jpg
+	map_bump tiles1_b.jpg
+	bump tiles1_b.jpg
+
+newmtl walls
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5882 0.5882 0.5882
+	Kd 0.5882 0.5882 0.5882
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka con003.jpg
+	map_Kd con003.jpg
+	map_bump con003.jpg
+	bump con003.jpg
+
+newmtl m_emb
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.9098 0.9098 0.9098
+	Kd 0.9098 0.9098 0.9098
+	Ks 0.1530 0.1530 0.1530
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Pavement_emb01.jpg
+	map_Kd Pavement_emb01.jpg
+	map_bump Pavement_emb01.jpg
+	bump Pavement_emb01.jpg
+
+newmtl ribbon
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.9804 0.9804 0.9804
+	Kd 0.9804 0.9804 0.9804
+	Ks 0.5850 0.5850 0.5850
+	Ke 0.0000 0.0000 0.0000
+	map_Ka ribbon.jpg
+	map_Kd ribbon.jpg
+
+newmtl g1
+	Ns 30.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.5220 0.5220 0.5220
+	Ke 0.5880 0.5880 0.5880
+	map_Ka GlassPane1.jpg
+	map_Kd GlassPane1.jpg
+
+newmtl metal1
+	Ns 41.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.9804 0.9804 0.9804
+	Kd 0.9804 0.9804 0.9804
+	Ks 0.3880 0.3880 0.3880
+	Ke 0.0000 0.0000 0.0000
+	map_Ka pai003.jpg
+	map_Kd pai003.jpg
+	map_bump pai003.jpg
+	bump pai003.jpg
+
+newmtl g2
+	Ns 26.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.5220 0.5220 0.5220
+	Ke 0.5880 0.5880 0.5880
+	map_Ka GlassPane2.jpg
+	map_Kd GlassPane2.jpg
+
+newmtl g3
+	Ns 35.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.5490 0.5490 0.5490
+	Ke 0.5880 0.5880 0.5880
+	map_Ka GlassPane3.jpg
+	map_Kd GlassPane3.jpg
+
+newmtl g4
+	Ns 30.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.5220 0.5220 0.5220
+	Ke 0.5880 0.5880 0.5880
+	map_Ka GlassPane4.jpg
+	map_Kd GlassPane4.jpg
+
+newmtl g5
+	Ns 17.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.4050 0.4050 0.4050
+	Ke 0.5880 0.5880 0.5880
+	map_Ka GlassPane5.jpg
+	map_Kd GlassPane5.jpg
+
+newmtl tank3
+	Ns 53.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 1.0000 1.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 0.7000 0.7000 0.7000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka WhitePaint_t.jpg
+	map_Kd WhitePaint_t.jpg
+	map_bump YellowPaint_t.jpg
+	bump YellowPaint_t.jpg
+
+newmtl tank2
+	Ns 13.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 1.0000 1.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 0.6588 0.6478 0.3376
+	Ke 0.0000 0.0000 0.0000
+	map_Ka YellowPaint_t.jpg
+	map_Kd YellowPaint_t.jpg
+	map_bump YellowPaint_t.jpg
+	bump YellowPaint_t.jpg
+
+newmtl tank1
+	Ns 63.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 1.0000 1.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 0.2580 0.4722 0.6780
+	Ke 0.0000 0.0000 0.0000
+	map_Ka BluePaint_t.jpg
+	map_Kd BluePaint_t.jpg
+	map_bump YellowPaint_t.jpg
+	bump YellowPaint_t.jpg
+
+newmtl tank4
+	Ns 63.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 1.0000 1.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 0.6588 0.4173 0.3376
+	Ke 0.0000 0.0000 0.0000
+	map_Ka RedPaint_t.jpg
+	map_Kd RedPaint_t.jpg
+	map_bump YellowPaint_t.jpg
+	bump YellowPaint_t.jpg

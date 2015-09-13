@@ -1,0 +1,80 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 24.09.2011 18:13:02
+
+newmtl HouseStoneWall
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka maps\StoneWall7_t.jpg
+	map_Kd maps\StoneWall7_t.jpg
+	map_bump maps\StoneWall7_b.jpg
+	bump maps\StoneWall7_b.jpg
+
+newmtl BrownWall
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 0.0450 0.0450 0.0450
+	Ke 0.0000 0.0000 0.0000
+	map_Ka maps\WallBrown.jpg
+	map_Kd maps\WallBrown.jpg
+
+newmtl WoodenWindowWhite
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 0.1530 0.1530 0.1530
+	Ke 0.0000 0.0000 0.0000
+	map_Ka maps\board01_whitePaint.jpg
+	map_Kd maps\board01_whitePaint.jpg
+	map_bump maps\board01.jpg
+	bump maps\board01.jpg
+
+newmtl floortiles4
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 0.2520 0.2520 0.2520
+	Ke 0.0000 0.0000 0.0000
+	map_Ka maps\tiles4.jpg
+	map_Kd maps\tiles4.jpg
+	map_bump maps\tiles4_b.jpg
+	bump maps\tiles4_b.jpg
+
+newmtl floortiles2
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 0.2520 0.2520 0.2520
+	Ke 0.0000 0.0000 0.0000
+	map_Ka maps\tiles2.jpg
+	map_Kd maps\tiles2.jpg
+	map_bump maps\tiles2.jpg
+	bump maps\tiles2.jpg

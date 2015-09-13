@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Shader Files">
+      <UniqueIdentifier>{11fbf5fe-3b1d-4d49-a6c9-b4e9efc4f6ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader Files\Header Files">
+      <UniqueIdentifier>{e7a30d7d-200e-4664-bd6d-ad0a328b3582}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader Files\Source Files">
+      <UniqueIdentifier>{85bbc13d-8fc8-4a8a-8257-51b8f9cfb679}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader Files\Shaders">
+      <UniqueIdentifier>{27f7d499-3bbd-4bf0-8bdd-d76b620dcc99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader Files\Shaders\Post_Proccessin">
+      <UniqueIdentifier>{c4fc7a7b-2f7d-4b3d-88ca-514acf53c30a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader Files\Shaders\Post_Proccessin\SSAO">
+      <UniqueIdentifier>{00e58ffb-1f24-4276-ad5b-57be828788b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader Files\Shaders\Post_Proccessin\tonemapping">
+      <UniqueIdentifier>{b13705d6-30d0-49e2-a86e-61f97219e6ea}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+    <None Include="..\src\Renderer\shaders\antiAlias.vert">
+      <Filter>Shader Files\Shaders\Post_Proccessin</Filter>
+    </None>
+    <None Include="..\src\Renderer\shaders\antiAlias.frag">
+      <Filter>Shader Files\Shaders\Post_Proccessin</Filter>
+    </None>
+    <None Include="..\src\Renderer\shaders\bloom.vert">
+      <Filter>Shader Files\Shaders\Post_Proccessin</Filter>
+    </None>
+    <None Include="..\src\Renderer\shaders\bloom.frag">
+      <Filter>Shader Files\Shaders\Post_Proccessin</Filter>
+    </None>
+    <None Include="..\src\Renderer\shaders\shadowmap.vert">
+      <Filter>Shader Files\Shaders</Filter>
+    </None>
+    <None Include="..\src\Renderer\shaders\G_pass.frag">
+      <Filter>Shader Files\Shaders</Filter>
+    </None>
+    <None Include="..\src\Renderer\shaders\G_pass.vert">
+      <Filter>Shader Files\Shaders</Filter>
+    </None>
+    <None Include="..\src\Renderer\shaders\illumination_pass.frag">
+      <Filter>Shader Files\Shaders</Filter>
+    </None>
+    <None Include="..\src\Renderer\shaders\illumination_pass.vert">
+      <Filter>Shader Files\Shaders</Filter>
+    </None>
+    <None Include="..\src\Renderer\shaders\Render.frag">
+      <Filter>Shader Files\Shaders</Filter>
+    </None>
+    <None Include="..\..\..\..\..\OpenGL-tutorial_v0009_33\tutorial14_render_to_texture\Render.vert">
+      <Filter>Shader Files\Shaders</Filter>
+    </None>
+    <None Include="..\src\Renderer\shaders\shadowmap.frag">
+      <Filter>Shader Files\Shaders</Filter>
+    </None>
+    <None Include="..\src\Renderer\shaders\FXAA.frag">
+      <Filter>Shader Files\Shaders\Post_Proccessin</Filter>
+    </None>
+    <None Include="..\src\Renderer\shaders\FXAA.vert">
+      <Filter>Shader Files\Shaders\Post_Proccessin</Filter>
+    </None>
+    <None Include="..\src\Renderer\shaders\accPass.vert">
+      <Filter>Shader Files\Shaders</Filter>
+    </None>
+    <None Include="..\src\Renderer\shaders\accPass.frag">
+      <Filter>Shader Files\Shaders</Filter>
+    </None>
+    <None Include="..\src\Renderer\shaders\SSAO.vert">
+      <Filter>Shader Files\Shaders\Post_Proccessin\SSAO</Filter>
+    </None>
+    <None Include="..\src\Renderer\shaders\SSAO.frag">
+      <Filter>Shader Files\Shaders\Post_Proccessin\SSAO</Filter>
+    </None>
+    <None Include="..\src\Renderer\shaders\SSAO_blur.frag">
+      <Filter>Shader Files\Shaders\Post_Proccessin\SSAO</Filter>
+    </None>
+    <None Include="..\src\Renderer\shaders\SSAO_blur.vert">
+      <Filter>Shader Files\Shaders\Post_Proccessin\SSAO</Filter>
+    </None>
+    <None Include="..\src\Renderer\shaders\tonemap.vert">
+      <Filter>Shader Files\Shaders\Post_Proccessin\tonemapping</Filter>
+    </None>
+    <None Include="..\src\Renderer\shaders\tonemap.frag">
+      <Filter>Shader Files\Shaders\Post_Proccessin\tonemapping</Filter>
+    </None>
+    <None Include="..\src\Renderer\shaders\logLuminance.vert">
+      <Filter>Shader Files\Shaders\Post_Proccessin\tonemapping</Filter>
+    </None>
+    <None Include="..\src\Renderer\shaders\logLuminance.frag">
+      <Filter>Shader Files\Shaders\Post_Proccessin\tonemapping</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Renderer\Renderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Renderer\glsl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Renderer\shaders\DRshaders.h">
+      <Filter>Shader Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Renderer\shaders\DRshader_AA.h">
+      <Filter>Shader Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Renderer\shaders\DRshader_bloom.h">
+      <Filter>Shader Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Renderer\shaders\DRshader_Gpass.h">
+      <Filter>Shader Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Renderer\shaders\DRshader_lightpass.h">
+      <Filter>Shader Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Renderer\shaders\DRshader_render.h">
+      <Filter>Shader Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Renderer\shaders\DRshader_shadowmap.h">
+      <Filter>Shader Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Renderer\shaders\DRshader_tonemap.h">
+      <Filter>Shader Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Renderer\shaders\DRshader_FXAA.h">
+      <Filter>Shader Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Renderer\shaders\DRshader_SSAO.h">
+      <Filter>Shader Files\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Renderer\shaders\DRshader_accPass.h">
+      <Filter>Shader Files\Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\Renderer\Renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Renderer\glsl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Renderer\shaders\DRshader_shadowmap.cpp">
+      <Filter>Shader Files\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Renderer\shaders\DRshader_AA.cpp">
+      <Filter>Shader Files\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Renderer\shaders\DRshader_bloom.cpp">
+      <Filter>Shader Files\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Renderer\shaders\DRshader_Gpass.cpp">
+      <Filter>Shader Files\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Renderer\shaders\DRshader_lightpass.cpp">
+      <Filter>Shader Files\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Renderer\shaders\DRshader_render.cpp">
+      <Filter>Shader Files\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Renderer\shaders\DRshader_tonemap.cpp">
+      <Filter>Shader Files\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Renderer\shaders\DRshader_FXAA.cpp">
+      <Filter>Shader Files\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Renderer\shaders\DRshader_SSAO.cpp">
+      <Filter>Shader Files\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Renderer\shaders\DRshader_accPass.cpp">
+      <Filter>Shader Files\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

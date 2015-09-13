@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6874211D-0AD6-4E84-937B-A0F3E679C2A0}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Renderer</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)\lib-Win32\$(ConfigurationName)\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\3rd_party;$(SolutionDir)\include;$(NVSDK10OGL_ROOT)\external\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>$(SolutionDir)\lib-Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <OutputFile>$(OutDir)\$(ProjectName).lib</OutputFile>
+      <AdditionalDependencies>lib3d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\3rd_party;$(SolutionDir)\include\Renderer;$(SolutionDir)\include\lib3d;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\..\OpenGL-tutorial_v0009_33\tutorial14_render_to_texture\Render.vert" />
+    <None Include="..\src\Renderer\shaders\accPass.frag" />
+    <None Include="..\src\Renderer\shaders\accPass.vert" />
+    <None Include="..\src\Renderer\shaders\antiAlias.frag" />
+    <None Include="..\src\Renderer\shaders\antiAlias.vert" />
+    <None Include="..\src\Renderer\shaders\bloom.frag" />
+    <None Include="..\src\Renderer\shaders\bloom.vert" />
+    <None Include="..\src\Renderer\shaders\FXAA.frag" />
+    <None Include="..\src\Renderer\shaders\FXAA.vert" />
+    <None Include="..\src\Renderer\shaders\G_pass.frag" />
+    <None Include="..\src\Renderer\shaders\G_pass.vert" />
+    <None Include="..\src\Renderer\shaders\illumination_pass.frag" />
+    <None Include="..\src\Renderer\shaders\illumination_pass.vert" />
+    <None Include="..\src\Renderer\shaders\logLuminance.frag" />
+    <None Include="..\src\Renderer\shaders\logLuminance.vert" />
+    <None Include="..\src\Renderer\shaders\Render.frag" />
+    <None Include="..\src\Renderer\shaders\shadowmap.frag" />
+    <None Include="..\src\Renderer\shaders\shadowmap.vert" />
+    <None Include="..\src\Renderer\shaders\SSAO.frag" />
+    <None Include="..\src\Renderer\shaders\SSAO.vert" />
+    <None Include="..\src\Renderer\shaders\SSAO_blur.frag" />
+    <None Include="..\src\Renderer\shaders\SSAO_blur.vert" />
+    <None Include="..\src\Renderer\shaders\tonemap.frag" />
+    <None Include="..\src\Renderer\shaders\tonemap.vert" />
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\Renderer\Renderer.h" />
+    <ClInclude Include="..\include\Renderer\glsl.h" />
+    <ClInclude Include="..\include\Renderer\shaders\DRshaders.h" />
+    <ClInclude Include="..\include\Renderer\shaders\DRshader_AA.h" />
+    <ClInclude Include="..\include\Renderer\shaders\DRshader_accPass.h" />
+    <ClInclude Include="..\include\Renderer\shaders\DRshader_bloom.h" />
+    <ClInclude Include="..\include\Renderer\shaders\DRshader_FXAA.h" />
+    <ClInclude Include="..\include\Renderer\shaders\DRshader_Gpass.h" />
+    <ClInclude Include="..\include\Renderer\shaders\DRshader_lightpass.h" />
+    <ClInclude Include="..\include\Renderer\shaders\DRshader_render.h" />
+    <ClInclude Include="..\include\Renderer\shaders\DRshader_shadowmap.h" />
+    <ClInclude Include="..\include\Renderer\shaders\DRshader_SSAO.h" />
+    <ClInclude Include="..\include\Renderer\shaders\DRshader_tonemap.h" />
+    <ClInclude Include="stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\Renderer\Renderer.cpp" />
+    <ClCompile Include="..\src\Renderer\glsl.cpp" />
+    <ClCompile Include="..\src\Renderer\shaders\DRshader_AA.cpp" />
+    <ClCompile Include="..\src\Renderer\shaders\DRshader_accPass.cpp" />
+    <ClCompile Include="..\src\Renderer\shaders\DRshader_bloom.cpp" />
+    <ClCompile Include="..\src\Renderer\shaders\DRshader_FXAA.cpp" />
+    <ClCompile Include="..\src\Renderer\shaders\DRshader_Gpass.cpp" />
+    <ClCompile Include="..\src\Renderer\shaders\DRshader_lightpass.cpp" />
+    <ClCompile Include="..\src\Renderer\shaders\DRshader_render.cpp" />
+    <ClCompile Include="..\src\Renderer\shaders\DRshader_shadowmap.cpp" />
+    <ClCompile Include="..\src\Renderer\shaders\DRshader_SSAO.cpp" />
+    <ClCompile Include="..\src\Renderer\shaders\DRshader_tonemap.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

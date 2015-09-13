@@ -1,0 +1,198 @@
+# 
+# Wavefront material file
+# Converted by the DEEP Exploration  3.5.9.1158
+# Right Hemisphere, LTD
+# http://www.righthemisphere.com/
+# 
+
+newmtl sp_00_luk_mali
+Ka 0 0 0
+Kd 1 1 1
+Ks 0 0 0
+illum 2
+Ns 64
+map_Kd sp_luk.bmp
+map_bump sp_luk.bmp
+bump sp_luk.bmp
+
+newmtl sp_svod_kapitel
+Ka 0 0 0
+Kd 1 1 1
+Ks 0 0 0
+illum 2
+Ns 64
+map_Kd 00_skap.bmp
+map_bump 00_skap.bmp
+bump 00_skap.bmp
+
+newmtl sp_01_stub_baza_
+Ka 0 0 0
+Kd 0.784314 0.784314 0.784314
+Ks 0 0 0
+illum 2
+Ns 8
+
+newmtl sp_01_stub_kut
+Ka 0 0 0
+Kd 1 1 1
+Ks 0 0 0
+illum 2
+Ns 64
+map_Kd 01_stub.bmp
+map_bump 01_stub.bmp
+bump 01_stub.bmp
+
+newmtl sp_00_stup
+Ka 0 0 0
+Kd 1 1 1
+Ks 0 0 0
+illum 2
+Ns 64
+map_Kd 01_stub.bmp
+map_bump 01_stub.bmp
+bump 01_stub.bmp
+
+newmtl sp_01_stub_baza
+Ka 0 0 0
+Kd 1 1 1
+Ks 0 0 0
+illum 2
+Ns 64
+map_Kd 01_s_ba.bmp
+map_bump 01_s_ba.bmp
+bump 01_s_ba.bmp
+
+newmtl sp_00_luk_mal1
+Ka 0 0 0
+Kd 1 1 1
+Ks 0 0 0
+illum 2
+Ns 64
+map_Kd 01_st_kp.bmp
+map_bump sp_luk.bmp
+bump sp_luk.bmp
+
+newmtl sp_01_stub
+Ka 0 0 0
+Kd 1 1 1
+Ks 0 0 0
+illum 2
+Ns 64
+map_Kd 01_stub.bmp
+map_bump 01_stub.bmp
+bump 01_stub.bmp
+
+newmtl sp_01_stup
+Ka 0 0 0
+Kd 1 1 1
+Ks 0 0 0
+illum 2
+Ns 64
+map_Kd X01_ST.bmp
+
+newmtl sp_vijenac
+Ka 0 0 0
+Kd 1 1 1
+Ks 0 0 0
+illum 2
+Ns 64
+map_Kd 00_skap.bmp
+map_bump 00_skap.bmp
+bump 00_skap.bmp
+
+newmtl sp_00_pod
+Ka 0 0 0
+Kd 1 1 1
+Ks 0 0 0
+illum 2
+Ns 64
+map_Kd kamen.bmp
+map_bump kamen.bmp
+bump kamen.bmp
+
+newmtl sp_00_svod
+Ka 0.145098 0.145098 0.145098
+Kd 0.94 0.9 0.8
+Ks 0.85098 0.807843 0.733333
+illum 2
+Ns 2.14355
+
+newmtl sp_02_reljef
+Ka 0 0 0
+Kd 1 1 1
+Ks 0 0 0
+illum 2
+Ns 64
+map_Kd reljef.bmp
+map_bump reljef.bmp
+bump reljef.bmp
+
+newmtl sp_01_luk_a
+Ka 0 0 0
+Kd 1 1 1
+Ks 0 0 0
+illum 2
+Ns 64
+map_Kd sp_luk.bmp
+map_bump sp_luk.bmp
+bump sp_luk.bmp
+
+newmtl sp_zid_vani
+Ka 0 0 0
+Kd 1 1 1
+Ks 0 0 0
+illum 2
+Ns 64
+map_Kd kamen.bmp
+map_bump kamen.bmp
+bump kamen.bmp
+
+newmtl sp_01_stup_baza
+Ka 0 0 0
+Kd 1 1 1
+Ks 0 0 0
+illum 2
+Ns 64
+map_Kd 01_s_ba.bmp
+map_bump 01_s_ba.bmp
+bump 01_s_ba.bmp
+
+newmtl sp_00_zid
+Ka 0 0 0
+Kd 1 1 1
+Ks 0 0 0
+illum 2
+Ns 64
+map_Kd kamen.bmp
+map_bump kamen.bmp
+bump kamen.bmp
+
+newmtl sp_00_prozor
+Ka 0 0 0
+Kd 1 1 1
+Ks 0 0 0
+illum 2
+Ns 64
+map_Kd prozor1.bmp
+map_bump prozor1.bmp
+bump prozor1.bmp
+
+newmtl sp_00_vrata_krug
+Ka 0 0 0
+Kd 1 1 1
+Ks 0 0 0
+illum 2
+Ns 8
+map_Kd vrata_kr.bmp
+map_bump vrata_kr.bmp
+bump vrata_kr.bmp
+
+newmtl sp_00_vrata_kock
+Ka 0 0 0
+Kd 1 1 1
+Ks 0 0 0
+illum 2
+Ns 8
+map_Kd vrata_ko.bmp
+map_bump vrata_ko.bmp
+bump vrata_ko.bmp

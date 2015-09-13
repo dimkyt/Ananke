@@ -1,0 +1,29 @@
+# 
+# Wavefront material file
+# Converted by the DEEP Exploration  3.5.9.1158
+# Right Hemisphere, LTD
+# http://www.righthemisphere.com/
+# 
+
+newmtl rocky
+Ka 0 0 0
+Kd 1 1 1
+Ks 0 0 0
+illum 2
+Ns 10
+map_Kd rock_map.bmp
+map_kA rock_map.bmp
+
+newmtl _1___Default
+Ka 0 0 0
+Kd 0.2314 0.2314 0.2314
+Ks 0.666 0.666 0.666
+illum 2
+Ns 17
+
+newmtl glowred
+Ka 0 0 0
+Kd 1 0.251 0
+Ks 0 0 0
+illum 2
+Ns 10
