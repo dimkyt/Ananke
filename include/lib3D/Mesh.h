@@ -1,3 +1,15 @@
+/*!
+ * \class Mesh
+ *
+ * Contains all the mesh data (vertices, faces, normals etc).
+ * Also creates the necessary openGL buffers.
+ * Binds attributes 0/1/2 to vertices/normals/textures
+ *
+ * \author Dimitrios
+ */
+
+
+
 #ifndef _Mesh_
 #define _Mesh_
 
@@ -52,8 +64,15 @@ public:
 
 	void objLoader(const string& filename);
 	void mtlLoad(const string& filename);
-	void indexAttributes();						//align attributes for indexed drawing
+
+
+	//align attributes for indexed drawing
+	void indexAttributes();
+
+	// Create the openGL buffers
+	// Reserves attributes 0/1/2 for vertex/normal/texture
 	void createBuffers();
+
 	void destroyBuffers();
 };
 

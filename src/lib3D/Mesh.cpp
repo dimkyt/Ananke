@@ -30,7 +30,7 @@ void Mesh::objLoader(const string& filename)
 {
   ifstream file;
   string line,
-       type;
+         type;
   bool has_norm = false,
      has_tex = false;
   unsigned int curr_mtl = 0;

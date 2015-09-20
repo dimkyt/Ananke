@@ -1,4 +1,4 @@
-#version 330 core
+#version 450 core
 
 in vec3 normal;
 in vec3 diff_mat;
