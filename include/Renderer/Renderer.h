@@ -8,8 +8,6 @@
 #include <glm\glm.hpp>
 #include <glm\gtc\matrix_transform.hpp>
 
-using namespace std;
-
 enum render_modes
 {
 	RENDER_NORMAL = 0,

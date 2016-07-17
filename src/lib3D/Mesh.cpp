@@ -9,9 +9,13 @@
 
 
 Mesh::Mesh(const string& filename)
+  : m_numVertices(0),
+    m_numNormals(0),
+    m_numTex(0),
+    m_numGroups(0),
+    m_numFaces(0),
+    m_numTextures(0)
 {
-  numVertices = numNormals = numTex = numGroups = numFaces = numTextures = 0;
-
   objLoader(filename);
   printf("Model loaded!\n\n");
 
@@ -21,7 +25,7 @@ Mesh::Mesh(const string& filename)
   createBuffers();
 }
 
-Mesh::~Mesh(void)
+Mesh::~Mesh()
 {
   destroyBuffers();
 }
@@ -62,16 +66,16 @@ void Mesh::objLoader(const string& filename)
     {
       glm::vec4 v;
       stream >> v.x >> v.y >> v.z; v.w = 1.0f;
-      vertices.push_back(v);
-      numVertices++;
+      m_vertices.push_back(v);
+      m_numVertices++;
       has_norm = has_tex = false;
     }
     else if(type == "vn")
     {
       glm::vec3 n;
       stream >> n.x >> n.y >> n.z;
-      normals.push_back(n);
-      numNormals++;
+      m_normals.push_back(n);
+      m_numNormals++;
       has_norm = true;
     }
     else if(type == "vt")
@@ -79,30 +83,30 @@ void Mesh::objLoader(const string& filename)
       glm::vec3 t;
       stream >> t.x >> t.y >> t.z;
       t.x = 1.0f-t.x;					//texture coordinate U needs to be inverted for OpenGL
-      texcoords.push_back(t);
-      numTex++;
+      m_texcoords.push_back(t);
+      m_numTex++;
       has_tex = true;
     }
     else if(type == "g")
     {
-      if(!groups.empty())			//update previous group
+      if(!m_triangle_groups.empty())			//update previous group
       {
-        groups.back().has_normal = has_norm;
-        groups.back().has_texture = has_tex;
-        groups.back().matIdx = curr_mtl;
+        m_triangle_groups.back().set_normal_flag(has_norm);
+        m_triangle_groups.back().set_texture_flag(has_tex);
+        m_triangle_groups.back().set_material_index(curr_mtl);
       }
 
       TriangleGroup g;
-      groups.push_back(g);
-      numGroups++;
+      m_triangle_groups.push_back(g);
+      m_numGroups++;
     }
     else if(type == "usemtl")
     {
       string name;
       stream >> name;
-      for(unsigned int i=0; i<numMaterials; i++)
+      for(unsigned int i=0; i<m_numMaterials; i++)
       {
-        if(name == materials[i].name)
+        if(name == m_materials[i].name)
         {
           //groups.back().matIdx = i;
           curr_mtl = i;
@@ -152,17 +156,20 @@ void Mesh::objLoader(const string& filename)
         vIdx-=tmp1;
       }
 
-      groups.back().vertIdx.push_back(vIdx.x);
-      groups.back().vertIdx.push_back(vIdx.y);
-      groups.back().vertIdx.push_back(vIdx.z);
-      groups.back().texIdx.push_back(tIdx.x);
-      groups.back().texIdx.push_back(tIdx.y);
-      groups.back().texIdx.push_back(tIdx.z);
-      groups.back().normIdx.push_back(nIdx.x);
-      groups.back().normIdx.push_back(nIdx.y);
-      groups.back().normIdx.push_back(nIdx.z);
-      groups.back().numFaces++;
-      numFaces++;
+      m_triangle_groups.back().add_vertex_index(vIdx.x);
+      m_triangle_groups.back().add_vertex_index(vIdx.y);
+      m_triangle_groups.back().add_vertex_index(vIdx.z);
+
+      m_triangle_groups.back().add_texture_index(tIdx.x);
+      m_triangle_groups.back().add_texture_index(tIdx.y);
+      m_triangle_groups.back().add_texture_index(tIdx.z);
+
+      m_triangle_groups.back().add_normal_index(nIdx.x);
+      m_triangle_groups.back().add_normal_index(nIdx.y);
+      m_triangle_groups.back().add_normal_index(nIdx.z);
+
+      m_triangle_groups.back().add_face();
+      m_numFaces++;
     }
   }
 
@@ -174,21 +181,19 @@ void Mesh::objLoader(const string& filename)
   file.close();
 
 
-  if(!groups.empty())					//update last group.
+  if(!m_triangle_groups.empty())					//update last group.
   {
-    groups.back().has_normal = has_norm;
-    groups.back().has_texture = has_tex;
-    groups.back().matIdx = curr_mtl;
+    m_triangle_groups.back().set_normal_flag(has_norm);
+    m_triangle_groups.back().set_texture_flag(has_tex);
+    m_triangle_groups.back().set_material_index(curr_mtl);
   }
 
   //trim vectors
-  for(vector<TriangleGroup>::iterator it = groups.begin(); it != groups.end(); it++)
+  for(auto triangle_group : m_triangle_groups)
   {
-    vector<unsigned int>(it->vertIdx).swap(it->vertIdx);
-    vector<unsigned int>(it->texIdx).swap(it->texIdx);
-    vector<unsigned int>(it->normIdx).swap(it->normIdx);
+    triangle_group.trim_vectors();
   }
-  vector<TriangleGroup>(groups).swap(groups);
+  vector<TriangleGroup>(m_triangle_groups).swap(m_triangle_groups);
 }
 
 void Mesh::mtlLoad(const string& filename)
@@ -215,38 +220,38 @@ void Mesh::mtlLoad(const string& filename)
     {
       Material m;
       stream >> m.name;
-      materials.push_back(m);
-      numMaterials++;
+      m_materials.push_back(m);
+      m_numMaterials++;
     }
     else if(type == "Ka")
     {
       glm::vec3 Ka;
       stream >> Ka.x >> Ka.y >> Ka.z;
-      materials.back().ambient = Ka;
+      m_materials.back().ambient = Ka;
     }
     else if(type == "Kd")
     {
       glm::vec3 Kd;
       stream >> Kd.x >> Kd.y >> Kd.z;
-      materials.back().diffuse = Kd;
+      m_materials.back().diffuse = Kd;
     }
     else if(type == "Ks")
     {
       glm::vec3 Ks;
       stream >> Ks.x >> Ks.y >> Ks.z;
-      materials.back().specular = Ks;
+      m_materials.back().specular = Ks;
     }
     else if(type == "Ke")
     {
       glm::vec3 Ke;
       stream >> Ke.x >> Ke.y >> Ke.z;
-      materials.back().emission = Ke;
+      m_materials.back().emission = Ke;
     }
     else if(type == "Ns")
     {
       float Ns;
       stream >> Ns;
-      materials.back().Ns = Ns;
+      m_materials.back().Ns = Ns;
     }
     else if(type == "map_Ka" || type == "map_Kd" || type == "map_Ks"|| type == "map_Ke")
     {
@@ -263,13 +268,13 @@ void Mesh::mtlLoad(const string& filename)
       else if(type == "map_Ke")
         mapID = MAP_EMISSION;
 
-      materials.back().has_texture[mapID] = true;
+      m_materials.back().has_texture[mapID] = true;
       stream >> tex;
 
-      it = textures.find(tex);
-      if(it == textures.end())		//Texture is not in map.
+      it = m_textures.find(tex);
+      if(it == m_textures.end())		//Texture is not in map.
       {
-        textures.insert(pair<string, Texture>(tex, Texture(tex)));	//Insert a new Texture object in map.
+        m_textures.insert(pair<string, Texture>(tex, Texture(tex)));	//Insert a new Texture object in map.
 
         //Get file type
         unsigned tmp = tex.find(".");
@@ -278,22 +283,22 @@ void Mesh::mtlLoad(const string& filename)
         //load texture
         bool check;
         if(tex_type != "bmp")
-          check = textures[tex].load_tex();
+          check = m_textures[tex].load_tex();
         else
-          check = textures[tex].load_BMP();
+          check = m_textures[tex].load_BMP();
 
         if(check)
         {
-          materials.back().textureID[mapID] = textures[tex].getID();
-          numTextures++;
+          m_materials.back().textureID[mapID] = m_textures[tex].getID();
+          m_numTextures++;
         }
         else
         {
-          textures.erase(tex);								//in case of error delete from map
+          m_textures.erase(tex);								//in case of error delete from map
         }
       }
       else
-        materials.back().textureID[mapID] = it->second.getID();
+        m_materials.back().textureID[mapID] = it->second.getID();
     }
   }
 
@@ -305,7 +310,7 @@ void Mesh::mtlLoad(const string& filename)
   file.close();
 
   //trim vector
-  vector<Material>(materials).swap(materials);
+  vector<Material>(m_materials).swap(m_materials);
 }
 
 void Mesh::indexAttributes()
@@ -314,25 +319,31 @@ void Mesh::indexAttributes()
   map<string, unsigned int>::iterator it;
   string key = "";
 
-  for(unsigned int i=0; i<numGroups; i++)
+  for(unsigned int i=0; i<m_numGroups; i++)
   {
-    for(unsigned int j=0; j<groups[i].numFaces; j++)
+    for(unsigned int j=0; j<m_triangle_groups[i].get_num_faces(); j++)
     {
       for(int k=0; k<3; k++)
       {
         //OBJ face format v/t/n
         unsigned int idx = 3*j+k;
         char tmp[30];
-        sprintf(tmp, "%u%u%u", groups[i].vertIdx[idx],  groups[i].texIdx[idx],  groups[i].normIdx[idx]);
+        sprintf_s(
+          tmp,
+          "%u%u%u",
+          m_triangle_groups[i].get_vertex_index(idx), 
+          m_triangle_groups[i].get_texture_index(idx), 
+          m_triangle_groups[i].get_normal_index(idx)
+        );
         key = tmp;
         
         it = uniques.find(key);
         if(it == uniques.end())	//vertex is not in map
         {
-          indexed_vertices.push_back(vertices[groups[i].vertIdx[idx]]);
-          indexed_texcoords.push_back(texcoords[groups[i].texIdx[idx]]);
-          indexed_normals.push_back(normals[groups[i].normIdx[idx]]);
-          unsigned int index = indexed_vertices.size()-1;
+          m_indexed_vertices.push_back(m_vertices[m_triangle_groups[i].get_vertex_index(idx)]);
+          m_indexed_texcoords.push_back(m_texcoords[m_triangle_groups[i].get_texture_index(idx)]);
+          m_indexed_normals.push_back(m_normals[m_triangle_groups[i].get_normal_index(idx)]);
+          unsigned int index = m_indexed_vertices.size()-1;
           indices.push_back(index);
           uniques[key] = index;
         }
@@ -352,30 +363,30 @@ void Mesh::createBuffers()
 {
   GLenum ErrorCheckValue = glGetError();
      
-  glGenVertexArrays(1, &vaoId);
-  glBindVertexArray(vaoId);
+  glGenVertexArrays(1, &m_vaoId);
+  glBindVertexArray(m_vaoId);
  
   //vertex buffer
-  glGenBuffers(1, &vboId);
-  glBindBuffer(GL_ARRAY_BUFFER, vboId);
-  glBufferData(GL_ARRAY_BUFFER, indexed_vertices.size()*sizeof(glm::vec4), &indexed_vertices[0], GL_STATIC_DRAW);
+  glGenBuffers(1, &m_vboId);
+  glBindBuffer(GL_ARRAY_BUFFER, m_vboId);
+  glBufferData(GL_ARRAY_BUFFER, m_indexed_vertices.size()*sizeof(glm::vec4), &m_indexed_vertices[0], GL_STATIC_DRAW);
   glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0, 0);
   
   //normal buffer
-  glGenBuffers(1, &nboId);
-  glBindBuffer(GL_ARRAY_BUFFER, nboId);
-  glBufferData(GL_ARRAY_BUFFER, indexed_normals.size()*sizeof(glm::vec3), &indexed_normals[0], GL_STATIC_DRAW);
+  glGenBuffers(1, &m_nboId);
+  glBindBuffer(GL_ARRAY_BUFFER, m_nboId);
+  glBufferData(GL_ARRAY_BUFFER, m_indexed_normals.size()*sizeof(glm::vec3), &m_indexed_normals[0], GL_STATIC_DRAW);
   glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, 0);
 
   //texture buffer
-  glGenBuffers(1, &tboId);
-  glBindBuffer(GL_ARRAY_BUFFER, tboId);
-  glBufferData(GL_ARRAY_BUFFER, indexed_texcoords.size()*sizeof(glm::vec3), &indexed_texcoords[0], GL_STATIC_DRAW);
+  glGenBuffers(1, &m_tboId);
+  glBindBuffer(GL_ARRAY_BUFFER, m_tboId);
+  glBufferData(GL_ARRAY_BUFFER, m_indexed_texcoords.size()*sizeof(glm::vec3), &m_indexed_texcoords[0], GL_STATIC_DRAW);
   glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, 0);
 
   //index buffer
-  glGenBuffers(1, &iboId);
-  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, iboId);
+  glGenBuffers(1, &m_iboId);
+  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_iboId);
   glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size()*sizeof(unsigned int), &indices[0], GL_STATIC_DRAW);
 
   glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -400,8 +411,28 @@ void Mesh::createBuffers()
 
 void Mesh::destroyBuffers()
 {
-  glDeleteBuffers(1, &vboId);
-  glDeleteBuffers(1, &nboId);
-  glDeleteBuffers(1, &tboId);
-  glDeleteBuffers(1, &iboId);
+  glDeleteBuffers(1, &m_vboId);
+  glDeleteBuffers(1, &m_nboId);
+  glDeleteBuffers(1, &m_tboId);
+  glDeleteBuffers(1, &m_iboId);
+}
+
+const std::vector<TriangleGroup>& Mesh::get_triangle_groups() const
+{
+  return m_triangle_groups;
+}
+
+const Material& Mesh::get_material(unsigned int index) const
+{
+  return m_materials.at(index);
+}
+
+GLuint Mesh::get_vertex_array_object_id() const
+{
+  return m_vaoId;
+}
+
+GLuint Mesh::get_indexed_buffer_object_id() const
+{
+  return m_iboId;
 }

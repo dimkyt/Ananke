@@ -4,8 +4,6 @@
 #include <glm\glm.hpp>
 #include <string>
 
-using namespace std;
-
 enum mapType
 {
   MAP_AMBIENT = 0,	     // map_Ka
@@ -18,7 +16,7 @@ enum mapType
 class Material
 {
 public:
-  string name;
+  std::string name;
 
   glm::vec3 ambient;
   glm::vec3 diffuse;

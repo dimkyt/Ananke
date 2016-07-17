@@ -24,56 +24,70 @@
 #include <vector>
 #include <map>
 
-using namespace std;
-
 class Mesh
 {
 
 public:
-	vector<glm::vec4> vertices;
-	vector<glm::vec3> normals;
-	vector<glm::vec3> texcoords;
-	vector<TriangleGroup> groups;
-	vector<Material> materials;
-	map<string, Texture> textures;
 
-	//Used for indexed rendering
-	vector<glm::vec4> indexed_vertices;
-	vector<glm::vec3> indexed_normals;
-	vector<glm::vec3> indexed_texcoords;
- 
-	vector<unsigned int> indices;
+  // Constructor
+  Mesh(const string& filename);
 
-	GLuint vaoId,
-		   vboId,
-		   nboId,
-		   tboId,
-		   iboId;
+  // Destructor
+  ~Mesh();
 
-	unsigned int numVertices;
-	unsigned int numNormals;
-	unsigned int numTex;
-	unsigned int numGroups;
-	unsigned int numFaces;
-	unsigned int numMaterials;
-	unsigned int numTextures;
+  void objLoader(const string& filename);
+  void mtlLoad(const string& filename);
 
 
-	Mesh(const string& filename);
-	~Mesh(void);
+  //align attributes for indexed drawing
+  void indexAttributes();
 
-	void objLoader(const string& filename);
-	void mtlLoad(const string& filename);
+  // Create the openGL buffers
+  // Reserves attributes 0/1/2 for vertex/normal/texture
+  void createBuffers();
 
+  void destroyBuffers();
 
-	//align attributes for indexed drawing
-	void indexAttributes();
+  // Returns the triangle groups of the Mesh.
+  const std::vector<TriangleGroup>& get_triangle_groups() const;
 
-	// Create the openGL buffers
-	// Reserves attributes 0/1/2 for vertex/normal/texture
-	void createBuffers();
+  // Returns the material at the given index.
+  const Material& get_material(unsigned int index) const;
 
-	void destroyBuffers();
+  // Returns the vaoID.
+  GLuint get_vertex_array_object_id() const;
+
+  // Returns the iboID.
+  GLuint get_indexed_buffer_object_id() const;
+
+private:
+  std::vector<glm::vec4> m_vertices;
+  std::vector<glm::vec3> m_normals;
+  std::vector<glm::vec3> m_texcoords;
+  std::vector<TriangleGroup> m_triangle_groups;
+  std::vector<Material> m_materials;
+  std::map<string, Texture> m_textures;
+
+  //Used for indexed rendering
+  std::vector<glm::vec4> m_indexed_vertices;
+  std::vector<glm::vec3> m_indexed_normals;
+  std::vector<glm::vec3> m_indexed_texcoords;
+
+  std::vector<unsigned int> indices;
+
+  GLuint m_vaoId;
+  GLuint m_vboId;
+  GLuint m_nboId;
+  GLuint m_tboId;
+  GLuint m_iboId;
+
+  unsigned int m_numVertices;
+  unsigned int m_numNormals;
+  unsigned int m_numTex;
+  unsigned int m_numGroups;
+  unsigned int m_numFaces;
+  unsigned int m_numMaterials;
+  unsigned int m_numTextures;
 };
 
 #endif

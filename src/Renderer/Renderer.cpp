@@ -264,15 +264,16 @@ void Renderer::shadowPass()
   glUseProgram(shader_shadowmap.shaderID);
   glUniformMatrix4fv(shader_shadowmap.uniform_MVP, 1, GL_FALSE, &matrix_MVP_shadow[0][0]);
 
-  glBindVertexArray(model->vaoId);
+  glBindVertexArray(model->get_vertex_array_object_id());
   glEnableVertexAttribArray(0);
-  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, model->iboId);
+  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, model->get_indexed_buffer_object_id());
 
+  const std::vector<TriangleGroup> triangle_groups = model->get_triangle_groups();
   unsigned int idxOffset = 0;
-  for(unsigned int i=0; i<model->numGroups; i++)
+  for (const auto triangle_group : triangle_groups)
   {
-    glDrawElements(GL_TRIANGLES, model->groups[i].vertIdx.size(), GL_UNSIGNED_INT, (void*)idxOffset);
-    idxOffset += model->groups[i].vertIdx.size()*sizeof(unsigned int);
+    glDrawElements(GL_TRIANGLES, triangle_group.get_num_vertex_index(), GL_UNSIGNED_INT, (void*)idxOffset);
+    idxOffset += triangle_group.get_num_vertex_index()*sizeof(unsigned int);
   }
 
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
@@ -301,52 +302,53 @@ void Renderer::GeometryPass()
   glUniformMatrix4fv(shader_Gpass.uniform_MVP, 1, GL_FALSE, &matrix_MVP[0][0]);
   glUniformMatrix4fv(shader_Gpass.uniform_MV_inv_trans, 1, GL_FALSE, &matrix_MV_inv_trans[0][0]);
 
-  glBindVertexArray(model->vaoId);
+  glBindVertexArray(model->get_vertex_array_object_id());
 
   glEnableVertexAttribArray(0);
   glEnableVertexAttribArray(1);
   glEnableVertexAttribArray(2);
 
-  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, model->iboId);
+  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, model->get_indexed_buffer_object_id());
 
+  const std::vector<TriangleGroup> triangle_groups = model->get_triangle_groups();
   unsigned int idxOffset = 0;
-  for(unsigned int i=0; i<model->numGroups; i++)
+  for (const auto triangle_group : triangle_groups)
   {
     //set diffuse material
-    glm::vec3 Kd = model->materials[model->groups[i].matIdx].diffuse;
+    glm::vec3 Kd = model->get_material(triangle_group.get_material_index()).diffuse;
     glUniform3f(shader_Gpass.uniform_diffuseMat, Kd.x, Kd.y, Kd.z);
 
     //set specular material
-    glm::vec3 Ks = model->materials[model->groups[i].matIdx].specular;
+    glm::vec3 Ks = model->get_material(triangle_group.get_material_index()).specular;
     glUniform3f(shader_Gpass.uniform_specularMat, Ks.x, Ks.y, Ks.z);
 
     //check for diffuse texture
-    float has_diffuse_tex = model->materials[model->groups[i].matIdx].has_texture[MAP_DIFFUSE];
+    float has_diffuse_tex = model->get_material(triangle_group.get_material_index()).has_texture[MAP_DIFFUSE];
     glUniform1f(shader_Gpass.uniform_has_diffuse_tex, has_diffuse_tex);
 
     //check for specular texture
-    float has_specular_tex = model->materials[model->groups[i].matIdx].has_texture[MAP_SPECULAR];
-    float Ns = model->materials[model->groups[i].matIdx].Ns;
+    float has_specular_tex = model->get_material(triangle_group.get_material_index()).has_texture[MAP_SPECULAR];
+    float Ns = model->get_material(triangle_group.get_material_index()).Ns;
     glUniform1f(shader_Gpass.uniform_has_specular_tex, has_specular_tex);
     glUniform1f(shader_Gpass.uniform_Ns, Ns);
 
     if(has_diffuse_tex == 1.0)
     {
       glActiveTexture(GL_TEXTURE0 + MAP_DIFFUSE);
-      unsigned int diffuse_texId = model->materials[model->groups[i].matIdx].textureID[MAP_DIFFUSE];
+      unsigned int diffuse_texId = model->get_material(triangle_group.get_material_index()).textureID[MAP_DIFFUSE];
       glBindTexture(GL_TEXTURE_2D, diffuse_texId);
       glUniform1i(shader_Gpass.uniform_sampler_diffuse, MAP_DIFFUSE);
     }
     if(has_specular_tex == 1.0)
     {
       glActiveTexture(GL_TEXTURE0 + MAP_SPECULAR);
-      unsigned int specular_texId = model->materials[model->groups[i].matIdx].textureID[MAP_SPECULAR];
+      unsigned int specular_texId = model->get_material(triangle_group.get_material_index()).textureID[MAP_SPECULAR];
       glBindTexture(GL_TEXTURE_2D, specular_texId);
       glUniform1i(shader_Gpass.uniform_sampler_specular, MAP_SPECULAR);
     }
 
-    glDrawElements(GL_TRIANGLES, model->groups[i].vertIdx.size(), GL_UNSIGNED_INT, (void*)idxOffset);
-    idxOffset += model->groups[i].vertIdx.size()*sizeof(unsigned int);
+    glDrawElements(GL_TRIANGLES, triangle_group.get_num_vertex_index(), GL_UNSIGNED_INT, (void*)idxOffset);
+    idxOffset += triangle_group.get_num_vertex_index()*sizeof(unsigned int);
   }
 
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
