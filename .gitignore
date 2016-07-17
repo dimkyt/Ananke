@@ -6,6 +6,9 @@
 *.user
 *.sln.docstates
 
+# User-specific files dirs
+examples/data/*/
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
