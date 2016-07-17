@@ -7,7 +7,7 @@
 *.sln.docstates
 
 # User-specific files dirs
-examples/data/*/
+#examples/data/*/
 
 # Build results
 [Dd]ebug/
